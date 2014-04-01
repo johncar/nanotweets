@@ -1,0 +1,50 @@
+body {
+	margin:0; 
+	padding:0; 
+	background:#eee;
+	font-family:Geneva, Lucida Sans, Lucida Grande, Lucida Sans Unicode, Verdana, sans-serif;
+}
+#wrapper {
+	width:840px; 
+	margin:0 auto; 
+	background:#fff; 
+	border:1px solid #ccc; 
+	padding:25px; 
+	border-top:none;
+	border-radius:0 0 5px 5px;
+	-moz-border-radius:0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px; 
+	box-shadow:0 0 5px #ccc;
+	-moz-box-shadow:0 0 5px #ccc;
+	-webkit-box-shadow:0 0 5px #ccc;
+}
+.mask {
+	position:relative;
+	height:180px;
+	width:240px;
+	-webkit-box-shadow:0 0 1px #000;
+	border:5px solid #f6f6f6;
+	overflow:hidden;
+	float:left;
+	margin:15px;
+}
+.mask img {
+	position:absolute;
+	height:300px;
+	width:400px;
+	-webkit-transform: rotate(35deg);
+	-moz-transform:rotate(35deg);
+	-o-transform:rotate(35deg);
+	-ms-transform:rotate(35deg);
+	transform:rotate(35deg);
+	top:50%;
+	left:20%;
+	margin-top:-150px; /* half the height */
+	margin-left:-200px; /*half the width */
+}
+.mask:hover {border-color:#ddd;}
+#error_message {
+	color:red; 
+	display:none; 
+	font-size:.8em;
+}

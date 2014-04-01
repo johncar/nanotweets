@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Nanotweets Demo</title>
+	
+	<!--jQuery-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+
+	<!--custom CSS-->
+  	<link type="text/css" rel="stylesheet" href="css/list.css" /> 
+  	
+  	<script>
+	$(document).ready( function() {
+		$.getJSON( "nanotate?action=list", function(result) {
+			
+			$("div#content").html('');
+			
+			if ( result.code == 0 ) {
+				var imgURL;
+				$("div#content").append("<ul></ul>");
+
+				var nanos = {};
+				var uuid;
+				
+				for ( var i in result.data ) {					
+					
+					uuid = result.data[i].document;
+					
+					if ( !nanos.hasOwnProperty( uuid ) ) {
+						nanos[ uuid ] = [];
+					}
+					
+					nanos[ uuid ].push( result.data[i].annotatedText );
+					
+			    } 
+				
+				var li;
+				
+				for ( var uuid in nanos ) {					
+					imgURL = "document?action=thumbnails&uuid=" + uuid;
+					link = "document.jsp?uuid=" + uuid;	
+					li = $("<li></li>" ).appendTo("div#content > ul");
+					li.append("<h3>" + uuid + "</h3>");
+					li.append("<ul></ul>");
+					for ( i in nanos[uuid] ) {
+						li.children('ul').append("<li><p>" + nanos[uuid][i] + "</p></li>");
+					}
+
+			    } 	
+			}
+		});	
+		
+	});
+	</script>
+  	
+</head>
+<body style="margin:0;">
+
+	<div id="wrapper">
+		<h1>Nanotweets</h1>	
+		<div id="content" style="clear:both;"></div>	
+	</div> <!-- #/wrapper -->
+ 
+</body>
+</html>
